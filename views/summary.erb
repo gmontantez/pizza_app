@@ -1,0 +1,56 @@
+<center><h1>Thank you for your selections!</h1>
+<h2>You chose a <%=size%> pizza with <%=sauce%> sauce and a <%=crust%> crust for $<%=('%.2f' % session[:size_choice].to_f)%>.</h2>
+<%if session[:meat] != "" && session[:veggie] != "" && session[:other] != ""%> 
+<h2>Your toppings are: <%=meat.join(', ')%> ,<%=veggie.join(', ')%> ,<%=other.join(', ')%></h2>
+<%end%>
+<h2>-----------------------------------------<br></h2>
+<h2>Please confirm your choices below:</h2>
+</center>
+<!-- <h2>...your toppings are: <%=meat.join(', ')%> ,<%=veggie.join(', ')%> ,<%=other.join(', ')%></h2> --> 
+<!-- # <%else%> --> 
+<!-- <h2>...you've opted for a plain cheese pizza.</h2> -->
+<center><form><h2><%meat.each do |choice| %>
+    	<%if meat == nil%>
+    	<%else%>
+    <%=choice%><input type="radio" name="meat[<%=choice%>]" value="<%=choice%>">Yes 
+    <input type="radio" name="meat[<%=choice%>]" value = "">No<br>
+    <%end%>
+<%end%>
+-----------------------------------------<br>
+<%veggie.each do |choice| %>
+    <%if veggie == nil%>
+    <%else%>
+    <%=choice%><input type="radio" name="veggie[<%=choice%>]" value="<%=choice%>">Yes 
+    <input type="radio" name="veggie[<%=choice%>]" value="">No<br>
+    <%end%>
+<%end%>
+-----------------------------------------<br>
+<%other.each do |choice| %>
+    <%if other == nil%>
+    <%else%>
+    <%=choice%><input type="radio" name="other[<%=choice%>]" value="<%=choice%>">Yes 
+    <input type="radio" name="other[<%=choice%>]" value="">No<br>
+    <%end%>
+<%end%>
+-----------------------------------------<br>
+</h2>
+</center>
+</form>
+<center><h2>Please select "Redo Choices" if you selected "No" to any of the toppings above:</h2></center>
+<center><h2><form method="get" action="redo">
+<input type="submit" value ="Redo Choices"></h2></center>
+</form>
+<center><form method="post" action="another_pizza">
+	<h2>Select "Add Another Pizza" if you'd like to order another pizza:</h2>
+	<h2><input type="submit" value="Add Another Pizza"></h2>
+</form>
+<center><form method="post" action="summary"></center>
+<center><h2>Would you like your order delivered?</h2></center>
+    <input type="radio" name="delivery" value="Yes">Yes<br>
+    <input type="radio" name="delivery" value="No">No<br>
+<center><h2><input type="submit"></h2></center>
+
+</form>
+</center>
+
+

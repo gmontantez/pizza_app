@@ -1,0 +1,17 @@
+<center><h1>This completes your order!</h1>
+<h2>-----------------------------------------<br></h2></center>
+<center><h2><%=message%> <%=address%></h2>
+
+<h2>-----------------------------------------<br></h2></center>
+<center><h1>The total amount owed including tax is $<%=pay_amount%>.</h1></center>
+
+<center><h2>-----------------------------------------<br></h2></center>
+<center><h2>Please select your method of payment:</h2></center>
+<center><h2><form method="post" action="payment_page">
+	<input type="radio" name="pymt_method" value="Cash">  Cash<br>
+	<input type="radio" name="pymt_method" value="Debit">  Debit<br>
+	<input type="radio" name="pymt_method" value="Credit">  Credit<br>
+	<input type="submit">
+</form>
+</h2>
+</center>
