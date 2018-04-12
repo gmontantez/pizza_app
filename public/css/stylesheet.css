@@ -1,6 +1,124 @@
+.background1 {
+    background-image: url(/img/pizza_cover.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background2 {
+    background-image: url(/img/cheese_sauce.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.background3 {
+    background-image: url(/img/ingredients.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.background4 {
+    background-image: url(/img/pizza_oven.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.background5 {
+    background-image: url(/img/supernatural.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background6 {
+    background-image: url(/img/cash_register.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background7 {
+    background-image: url(/img/pizza_oven.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+p.b {
+	font-size: 3rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	border-style: double ridge;
+	border-width: 15x;
+	border-color: coral;
+	padding: 10px;
+}
+p.c {
+	font-size: 2rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #ff0000/*red*/
+}
+p.d {
+	font-size: 2rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+}
+p.e {
+	font-size: 1.75rem;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff00/*yellow*/
+}
+p.f {
+	font-size: 2.5rem;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff00/*yellow*/
+}
+p.g{
+	font-size: 1.75rem;
+	font-weight: bold;
+	text-align: center;
+	color: #269900;/*green*/
+}
+p.h{
+	font-size: 1.75rem;
+	font-weight: bold;
+	text-align: center;
+	
+}
+p.i{
+	font-size: 1.75rem;
+	font-weight: bold;
+	text-align: center;
+	color: #ff0000/*red*/
+}
+p.j {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+	color: #269900;/*green*/
+}
+
+p.m {
+	text-align: center;
+	padding-bottom: 10rem;
+}
+
+h1 {
+	color: #ffff00;/*yellow*/
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+h3 {
+	font-weight: bold;
+	text-align: center;
+}
+
 li {
 	display: inline;
-	font-size: 1.5rem;
+	font-size: 2rem;
 	text-align: center;
 	padding-right: 2rem;
 	padding-left: 2rem;
@@ -8,20 +126,23 @@ li {
 
 ul {
 	text-align: center;
+	padding-bottom: 2rem
 }
 
+
+}
 li a {
-	color: #191970;
+	color: #7FFF00;/*green*/
 }
 
 a:hover {
     background-color: yellow;
 }
-.name {
-	font-size: 2rem;
 
-}
+
 
 .center{
 	text-align: center
 }
+
+

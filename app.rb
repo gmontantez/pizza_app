@@ -57,32 +57,44 @@ get '/summary' do
   	erb :summary, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other]}
 end
 
-post '/another_pizza' do
-	# if session[:cheese_choice] == "cheese"
-	# 	session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:cheese_choice]]
-	# else
-	session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
-	# end
-	p "#{session[:pizzas]}"
-	redirect '/pizza_choices'
-end
-
 get '/redo' do
     erb :pizza_choices
 end
 
 post '/summary' do
-	# if session[:cheese_choice] == "cheese"
-	# 	session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:cheese_choice]]
-	# else
+	selected_meats = params[:meat] || []
+	selected_veggies = params[:veggie] || []
+	selected_other = params[:other] || []
 	session[:delivery] = params[:delivery]
-	session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
-	if session[:delivery] == "Yes"
-        redirect '/delivery_info'
-    elsif session[:delivery] == "No"
-        redirect '/payment_page'
-    end
-	redirect '/payment_page'
+	another_pizza = params[:add_another_pizza]
+	if selected_meats != []
+		#.values turns meat = {"peperoni" => "pepperoni", "ham" => "ham"} to ["peperoni", "ham"]
+		#meat.values
+		session[:meat] = selected_meats.values
+	end
+	if selected_veggies != []
+		session[:veggie] = selected_veggies.values
+	end
+	if selected_other != []
+		session[:other] = selected_other.values
+	end
+	p session[:meat]
+	p session[:veggie]
+	p session[:other]
+	if another_pizza == "More"
+		session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
+		p session[:pizzas]
+		redirect '/pizza_choices'
+	else
+		session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
+		if session[:delivery] == "Yes"
+			p session[:pizzas]
+	        redirect '/delivery_info'
+	    elsif session[:delivery] == "No"
+			p session[:pizzas]
+	        redirect '/payment_page'
+	    end
+	end
 end
 
 get '/delivery_info' do
@@ -96,13 +108,12 @@ post '/delivery_address' do
 end
 
 get '/payment_page' do
-	if session == "No"
+	if session[:delivery] == "No"
 		session[:message] = ""
-		erb :payment_page, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other], delivery: session[:delivery], address: session[:address], message: session[:message]}
-	else session[:message] = "Your address if you selected delivery is:"
-		erb :payment_page, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other], pay_amount: session[:pay_amount], delivery: session[:delivery], address: session[:address], message: session[:message], delivery_address: session[:delivery_address]}
+		session[:address] = ""
+	else 
+		session[:message] = "Your address if you selected delivery is:"
 	end
-	session[:pay_amount] = params[:size_choice]
 	session[:pay_amount] = 0
 	session[:pizzas].each do |pizzas|
 		p "here are my pizzas#{pizzas}"
@@ -110,17 +121,10 @@ get '/payment_page' do
 	end
 	session[:pay_amount] += 1.07 * session[:pizzas].length
 	p "here is my result #{session[:pay_amount]}"
-  	erb :payment_page, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other], pay_amount: session[:pay_amount], pizzas: session[:pizzas], delivery: session[:delivery], address: session[:address], delivery_address: session[:delivery_address], message: session[:message]}
+  	erb :payment_page, locals: {pay_amount: session[:pay_amount], pizzas: session[:pizzas], delivery: session[:delivery], address: session[:address], delivery_address: session[:delivery_address], message: session[:message]}
 end
 
 post '/payment_page' do
-	session[:pay_amount] = 0
-	session[:pizzas].each do |pizzas|
-		p pizzas
-		session[:pay_amount] += pizzas[1]
-	end
-	session[:pay_amount] += 1.07 * session[:pizzas].length
-	p session[:pay_amount]
 	redirect '/final_page'
 end
 
