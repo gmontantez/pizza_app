@@ -21,6 +21,8 @@ get '/pizza_choices' do
 	session[:meat] = ""
 	session[:veggie] = ""
 	session[:other] = ""
+	session[:other_options] = ""
+	session[:other_options_choice] = ""
 	erb :pizza_choices
 end
 
@@ -42,7 +44,7 @@ post '/pizza_choices' do
 end
 
 get '/pizza_toppings' do
-  # p "you've selected #{cost(session[:size].to_s)}"
+	 # p "you've selected #{cost(session[:size].to_s)}"
   	erb :pizza_toppings, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce]}
 end
 
@@ -50,11 +52,18 @@ post '/pizza_toppings' do
 	session[:meat] = params[:meat]
 	session[:veggie] = params[:veggie]
 	session[:other] = params[:other]
+	session[:other_options] = params[:other_options]
+	p session[:other_options]
+	session[:other_options_choice] = 0
+	session[:other_options].each do |option|
+		session[:other_options_choice] += special_options(option)
+	end
+	p session[:other_options_choice]
    	redirect '/summary'
 end
 
 get '/summary' do
-  	erb :summary, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other]}
+  	erb :summary, locals: {size: session[:size], size_choice: ('%.2f' % session[:size_choice].to_f), crust: session[:crust], sauce: session[:sauce], meat: session[:meat], veggie: session[:veggie], other: session[:other], other_options_choice: ('%.2f' % session[:other_options_choice].to_f)}
 end
 
 get '/redo' do
@@ -65,6 +74,7 @@ post '/summary' do
 	selected_meats = params[:meat] || []
 	selected_veggies = params[:veggie] || []
 	selected_other = params[:other] || []
+	selected_other_options = params[:other_options] || []
 	session[:delivery] = params[:delivery]
 	another_pizza = params[:add_another_pizza]
 	if selected_meats != []
@@ -78,15 +88,19 @@ post '/summary' do
 	if selected_other != []
 		session[:other] = selected_other.values
 	end
+	if selected_other_options != []
+		session[:other_options] = selected_other_options.values
+	end
 	p session[:meat]
 	p session[:veggie]
 	p session[:other]
+	p session[:other_options_choice]
 	if another_pizza == "More"
-		session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
+		session[:pizzas] << [session[:size],session[:size_choice].to_f,session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other], session[:other_options], session[:other_options_choice]]
 		p session[:pizzas]
 		redirect '/pizza_choices'
 	else
-		session[:pizzas] << [session[:size],session[:size_choice],session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other]]
+		session[:pizzas] << [session[:size],session[:size_choice].to_f,session[:crust],session[:sauce],session[:meat],session[:veggie],session[:other], session[:other_options], session[:other_options_choice]]
 		if session[:delivery] == "Yes"
 			p session[:pizzas]
 	        redirect '/delivery_info'
@@ -118,6 +132,7 @@ get '/payment_page' do
 	session[:pizzas].each do |pizzas|
 		p "here are my pizzas#{pizzas}"
 		session[:pay_amount] += pizzas[1]
+		session[:pay_amount] += pizzas[8]
 	end
 	session[:pay_amount] += 1.07 * session[:pizzas].length
 	p "here is my result #{session[:pay_amount]}"
@@ -130,6 +145,14 @@ end
 
 get '/final_page' do
 	erb :final_page
+end
+
+get '/about_us' do 
+	erb :about_us
+end
+
+get '/contact_us' do 
+	erb :contact_us
 end
 
 	

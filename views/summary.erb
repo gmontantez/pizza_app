@@ -7,16 +7,16 @@
 </style>
 </head>
 <body class="background4">
-<h2><p class="h">Thank you for your selections!</p></h2>
-<h2><p class="d">You chose a <%=size%> pizza with <%=sauce%> sauce and a <%=crust%> crust for $<%=('%.2f' % session[:size_choice].to_f)%>.</p></h2>
-<%if session[:meat] != "" && session[:veggie] != "" && session[:other] != ""%> 
-<h2><p class="d">Your toppings are: <%=meat.join(', ')%> ,<%=veggie.join(', ')%> ,<%=other.join(', ')%></p></h2>
+<h2><p class="d">Thank you for your selections!</p></h2>
+<h2><p class="c">You chose a <%=size%> pizza with <%=sauce%> sauce and a <%=crust%> crust for $<%=('%.2f' % session[:size_choice].to_f)%>.</p></h2>
+<%if session[:meat] != "" && session[:veggie] != "" && session[:other] != "" && session[:other_options] != ""%> 
+<h2><p class="c">Your toppings are: <%=meat.join(', ')%>, <%=veggie.join(', ')%>, <%=other.join(', ')%>, and <%=session[:other_options].join(', ')%> for $<%=('%.2f' % session[:other_options_choice].to_f)%></p></h2>
 <%end%>
 <h2>-----------------------------------------<br></h2>
-<h2><p class="e">Please confirm your choices below:</p></h2>
+<h2><p class="f">Please confirm your choices below:</p></h2>
 
 <form method="post" action="summary">
-<h2><p class="e"><%meat.each do |choice| %>
+<h2><p class="f"><%meat.each do |choice| %>
     	<%if meat == nil%>
     	<%else%>
     <%=choice%><input type="radio" name="meat[<%=choice%>]" value="<%=choice%>">Yes 
@@ -40,19 +40,32 @@
     <%end%>
 <%end%>
 -----------------------------------------<br>
+<%session[:other_options].each do |choice| %>
+    <%if choice == nil%>
+    <%else%>
+    <%=choice%><input type="radio" name="other_options[<%=choice%>]" value="<%=choice%>">Yes 
+    <input type="radio" name="others_options[<%=choice%>]" value="">No<br>
+-----------------------------------------<br>
+    <%end%>
+<%end%>
 </p>
 </h2>
-<h2><p class="e">Select "Add Another Pizza" if you'd like to order another pizza:</p>
-	<input type="checkbox" name="add_another_pizza" value="More">Add Another Pizza<br>
-Would you like your order delivered?<br>
-    <input type="radio" name="delivery" value="Yes">Yes<br>
-    <input type="radio" name="delivery" value="No">No<br>
-<h2><input type="submit"></h2>
 </form>
-<h2><p class="e">Please select "Redo Choices" if you want to remake your pizza:
+<h2><p class="i">Please select "Redo Choices" if you want to remake your pizza:
 <form method="get" action="redo">
 	<input type="submit" value ="Redo Choices">
 </form></p></h2>
+<form method="post" action="summary">
+<h2><p class="f">Select "Add Another Pizza" and "Submit" if you'd like to order another pizza:</p>
+<p class="k"><input type="checkbox" name="add_another_pizza" value="More">Add Another Pizza</p>
+	<input type="submit"></h2>
+<h2><p class="e">Would you like your order delivered?</p>
+<p class="g"><input type="radio" name="delivery" value="Yes">Yes</p>
+<p class="i"><input type="radio" name="delivery" value="No">No</p>
+	<input type="submit"></p></h2>
+</form>
+
+
 
 </center>
 </body>

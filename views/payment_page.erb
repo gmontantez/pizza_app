@@ -7,9 +7,9 @@
 </style>
 </head>
 <body class="background6">
-<h1>This completes your order!</h1>
+<p class="k">This completes your order!</p>
 <h2>-----------------------------------------<br></h2>
-<h1>Your order was <%=pizzas.length%>
+<h1>You ordered  <%=pizzas.length%>
 <%if pizzas.length == 1%>
 	pizza
 <%else%>
@@ -17,20 +17,21 @@
 <%end%>
 </h1>
 <%pizzas.each do |pizza|%>
-	<h3>A <%=pizza[0]%> pizza, with <%=pizza[2]%> crust, <%=pizza[3]%> sauce. Your toppings are <%=pizza[4].join(' ,')%>, <%=pizza[5].join(' ,')%>, and <%=pizza[6].join(' ,')%> for $<%=('%.2f' % pizza[1])%></h3>
+	<h3><p class="c">A <%=pizza[0]%> pizza with <%=pizza[2]%> crust and <%=pizza[3]%> sauce for $<%=('%.2f' % pizza[1].to_f)%> . Your toppings are <%=pizza[4].join(', ')%>, <%=pizza[5].join(', ')%>,  <%=pizza[6].join(', ')%> and <%=session[:other_options].join(', ')%> for $<%=('%.2f' % session[:other_options_choice].to_f)%></p></h3>
 <%end%>
 <%if address != ""%>
 <h2>-----------------------------------------<br></h2>
-<h2><p class="e"><%=message%> <%=address%></p></h2>
+<h2><p class="f"><%=message%> <%=address%></p></h2>
 <%end%>
 
 <h2>-----------------------------------------<br></h2></center>
 <h1>The total amount owed including tax is $<%=pay_amount%>.</h1>
 
 <h2>-----------------------------------------<br></h2>
-<h2><p class="e">Please select your method of payment:</p></h2><
+
 <h2><form method="post" action="payment_page">
-<p class="e">	<input type="radio" name="pymt_method" value="Cash">  Cash<br>
+<p class="d">Please select your method of payment:<br>
+<input type="radio" name="pymt_method" value="Cash">  Cash<br>
 	<input type="radio" name="pymt_method" value="Debit">  Debit<br>
 	<input type="radio" name="pymt_method" value="Credit">  Credit<br>
 	<input type="submit">

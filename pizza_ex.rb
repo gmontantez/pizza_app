@@ -69,15 +69,18 @@ def cost(size)
    end
 end
 
-# def special_options(other_options)
-#    if other_options == "extra cheese"
-#       1.00
-#    elsif other_options == "double meat"
-#       2.00
-#    elsif other_options == "feta cheese"
-#       3.00
-#    end
-# end
+def special_options(other_options)
+   if other_options == "extra cheese"
+      1.00
+   elsif other_options == "double meat"
+      2.00
+   elsif other_options == "feta cheese"
+      3.00
+   else
+      other_options == "no special topping"
+      0.00
+   end
+end
 
 # def amount(wings_size)
 #    if wings_size == "8 piece"

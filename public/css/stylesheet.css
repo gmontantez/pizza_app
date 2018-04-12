@@ -7,34 +7,53 @@
     background-image: url(/img/cheese_sauce.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
 }
 .background3 {
     background-image: url(/img/ingredients.jpg);
     background-repeat: no-repeat;
     background-size: contain;
+    background-attachment: fixed;
     background-position: center;
 }
 .background4 {
     background-image: url(/img/pizza_oven.gif);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
 }
 .background5 {
     background-image: url(/img/supernatural.gif);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .background6 {
     background-image: url(/img/cash_register.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .background7 {
     background-image: url(/img/pizza_oven.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+.background9 {
+	background-image: url(/img/indoors.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+.background10 {
+    background-image: url(/img/contact_us.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 p.b {
@@ -54,24 +73,26 @@ p.c {
 	text-align: center;
 	color: #ff0000/*red*/
 }
+
 p.d {
 	font-size: 2rem;
-	font-style: italic;
 	font-weight: bold;
 	text-align: center;
+	color: #269900;/*green*/
 }
 p.e {
-	font-size: 1.75rem;
-	font-weight: bold;
-	text-align: center;
-	color: #ffff00/*yellow*/
-}
-p.f {
 	font-size: 2.5rem;
 	font-weight: bold;
 	text-align: center;
 	color: #ffff00/*yellow*/
 }
+p.f {
+	font-size: 1.75rem;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff00/*yellow*/
+}
+
 p.g{
 	font-size: 1.75rem;
 	font-weight: bold;
@@ -91,15 +112,52 @@ p.i{
 	color: #ff0000/*red*/
 }
 p.j {
-	font-size: 2rem;
+	font-size: 2.5rem;
+	font-weight: bold;
+	text-align: center;
+	color: #ff0000/*red*/
+}
+p.k {
+	font-size: 2.5rem;
 	font-weight: bold;
 	text-align: center;
 	color: #269900;/*green*/
 }
 
+p.l {
+	font-size: 3rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff00;/*yellow*/
+}
+
 p.m {
 	text-align: center;
 	padding-bottom: 10rem;
+}
+p.n {
+	font-size: 3rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #ff0000/*red*/
+}
+p.o {
+	font-size: 3rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #269900;/*green*/
+}
+p.serif {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 3rem;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff00;/*yellow*/
+	text-align: center;
 }
 
 h1 {
